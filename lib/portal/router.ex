@@ -10,11 +10,10 @@ defmodule Portal.Router do
     |> send_resp(200, Poison.encode!(message()))
   end
 
-  defp message do
+  def message do
     %{
       response_type: "in_channel",
       text: "Hello World :)"
     }
-  end
   end
 end
