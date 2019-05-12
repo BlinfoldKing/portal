@@ -1,5 +1,5 @@
 defmodule Portal.Endpoint do
-  use Plug.router
+  use Plug.Router
 
   plug :match
 
