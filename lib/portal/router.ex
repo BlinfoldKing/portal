@@ -4,16 +4,21 @@ defmodule Portal.Router do
   plug :match
   plug :dispatch
 
-  get "/" do
+  post "/:key/to/:url" do
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, Poison.encode!(message()))
+    |> send_resp(200, Poison.encode!(%{ key: key, url: url }))
   end
 
-  def message do
-    %{
-      response_type: "in_channel",
-      text: "Hello World :)"
-    }
+  get "/:key" do
+    conn
+    |> Plug.Conn.resp(:found, "")
+    |> Plug.Conn.put_resp_header("location", "https://google.com")
+  end
+
+  get "/g/:key" do
+    conn
+    |> Plug.Conn.resp(:found, "")
+    |> Plug.Conn.put_resp_header("location", "https://github.com/blinfoldking/#{key}")
   end
 end

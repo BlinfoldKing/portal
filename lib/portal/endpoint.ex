@@ -5,14 +5,15 @@ defmodule Portal.Endpoint do
 
   plug(
     Plug.Parsers,
-    parsers: [:json],
+    parsers: [:json, :urlencoded],
     pass: ["application/json"],
+    body_reader: {CacheBodyReader, :read_body, []},
     json_decoder: Poison
   )
 
   plug :dispatch
 
-  forward "/get", to: Portal.Router
+  forward "/", to: Portal.Router
 
   match _ do
     send_resp conn, 404, "Error for now"
