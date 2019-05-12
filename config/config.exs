@@ -10,7 +10,19 @@ use Mix.Config
 
 # You can configure your application as:
 #
-#     config :portal, key: :value
+
+config :portal, Portal.Repo,
+  adapter: EctoMnesia.Adapter
+
+config :portal,
+  ecto_repos: [ Portal.Repo ]
+
+config :ecto_mnesia,
+  host: {:system, :atom, "MNESIA_HOST", Kernel.node()},
+  storage_type: {:system, :atom, "MNESIA_STORAGE_TYPE", :disc_copies}
+
+config :mnesia,
+  dir: 'priv/data/mnesia'
 #
 # and access this configuration in your application as:
 #

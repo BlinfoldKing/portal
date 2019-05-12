@@ -1,5 +1,6 @@
 defmodule Portal.Router do
   use Plug.Router
+  alias Portal.Links
 
   plug :match
   plug :dispatch
