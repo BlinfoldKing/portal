@@ -2,9 +2,10 @@ defmodule Portal.Links do
   use Ecto.Schema
   import Ecto.Changeset
 
-  @primary_key { :key, :string, []}
+  @primary_key false
   schema "links" do
     field :url, :string
+    field :key, :string, primary_key: true
 
     timestamps
   end
